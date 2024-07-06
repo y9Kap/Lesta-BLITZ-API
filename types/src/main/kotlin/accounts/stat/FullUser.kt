@@ -1,8 +1,6 @@
-package accounts
+package accounts.stat
 
 import accounts.date.DateTime
-import accounts.stat.Private
-import accounts.stat.Statistics
 import auth.AccountId
 
 public data class FullUser(
