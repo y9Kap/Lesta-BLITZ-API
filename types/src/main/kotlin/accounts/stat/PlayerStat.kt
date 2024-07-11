@@ -3,7 +3,7 @@ package accounts.stat
 import accounts.date.DateTime
 import auth.AccountId
 
-public data class FullUser(
+public data class PlayerStat(
     val statistics: Statistics,
     val accountId: AccountId,
     val createdAt: DateTime,

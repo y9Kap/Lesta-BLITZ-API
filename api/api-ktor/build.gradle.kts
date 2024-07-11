@@ -15,6 +15,7 @@ repositories {
 dependencies {
     implementation(project(":api"))
     implementation(project(":types"))
+    implementation(project(":types:serializable"))
     testImplementation(kotlin("test"))
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")

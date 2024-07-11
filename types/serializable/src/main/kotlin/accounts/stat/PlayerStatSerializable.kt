@@ -6,7 +6,7 @@ import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class FullUserSerializable(
+public data class PlayerStatSerializable(
     val statistics: StatisticsSerializable,
     @SerialName("account_id")
     val accountId: AccountIdSerializable,
