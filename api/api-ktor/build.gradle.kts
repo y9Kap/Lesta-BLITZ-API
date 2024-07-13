@@ -4,7 +4,6 @@ plugins {
 }
 
 group = "org.example"
-version = "1.0-SNAPSHOT"
 
 val ktorVersion = "2.3.12"
 
@@ -16,7 +15,6 @@ dependencies {
     implementation(project(":api"))
     implementation(project(":types"))
     implementation(project(":types:serializable"))
-    testImplementation(kotlin("test"))
     implementation("io.ktor:ktor-client-core:$ktorVersion")
     implementation("io.ktor:ktor-client-cio:$ktorVersion")
     implementation("io.ktor:ktor-client-content-negotiation:$ktorVersion")
@@ -24,9 +22,6 @@ dependencies {
     implementation("io.ktor:ktor-client-logging:$ktorVersion")
 }
 
-tasks.test {
-    useJUnitPlatform()
-}
 kotlin {
     jvmToolchain(22)
 }
