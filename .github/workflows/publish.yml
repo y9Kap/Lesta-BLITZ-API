@@ -25,24 +25,13 @@ jobs:
       - name: build
         run: ./gradlew clean build
 
-      - name: Import GPG key
-        run: |
-          echo "$SIGNING_KEY" | gpg --batch --import
-        env:
-          SIGNING_KEY: ${{ secrets.SIGNING_KEY }}
-
       - name: Build and publish
         env:
           OSSRH_USERNAME: ${{ secrets.OSSRH_USERNAME }}
           OSSRH_PASSWORD: ${{ secrets.OSSRH_PASSWORD }}
           SIGNING_KEY_ID: ${{ secrets.SIGNING_KEY_ID }}
           SIGNING_KEY_PASSPHRASE: ${{ secrets.SIGNING_KEY_PASSPHRASE }}
-        run: |
-          echo "OSSRH_USERNAME=$OSSRH_USERNAME"
-          echo "OSSRH_PASSWORD=$OSSRH_PASSWORD"
-          echo "SIGNING_KEY_ID=$SIGNING_KEY_ID"
-          echo "SIGNING_KEY_PASSPHRASE=$SIGNING_KEY_PASSPHRASE"
-          ./gradlew -PsonatypeUsername=${{ secrets.OSSRH_USERNAME }} /
+        run: ./gradlew -PsonatypeUsername=${{ secrets.OSSRH_USERNAME }} /
                     -PsonatypePassword=${{ secrets.OSSRH_PASSWORD }} /
                     -Psigning.keyId=0x${{ secrets.SIGNING_KEY_ID }} /
                     -Psigning.password=${{ secrets.SIGNING_KEY_PASSPHRASE }} /
