@@ -1,4 +1,7 @@
 import com.github.jengelman.gradle.plugins.shadow.tasks.ShadowJar
+import com.vanniktech.maven.publish.JavadocJar
+import com.vanniktech.maven.publish.KotlinJvm
+import com.vanniktech.maven.publish.SonatypeHost
 
 plugins {
     kotlin("jvm") version "2.0.0"
@@ -7,9 +10,6 @@ plugins {
     id("signing")
     id("com.vanniktech.maven.publish") version "0.29.0"
 }
-
-group = "org.example"
-version = "0.2.0"
 
 repositories {
     mavenCentral()
@@ -20,13 +20,24 @@ tasks.named<ShadowJar>("shadowJar") {
 }
 
 mavenPublishing {
-    coordinates("com.example.Lesta-BLITZ-API", "Lesta-BLITZ-API", "0.2.0-SNAPSHOT")
+    publishToMavenCentral(SonatypeHost.CENTRAL_PORTAL)
+
+    signAllPublications()
+    configure(KotlinJvm(
+        javadocJar = JavadocJar.Empty(),
+        sourcesJar = true,
+    ))
+}
+
+mavenPublishing {
+    coordinates("io.github.y9kap.Lesta-BLITZ-API", "Lesta-BLITZ-API", "0.3.3")
 
     pom {
         name.set("Lesta-BLITZ-API")
         description.set("Library for interacting with the Lesta Games API")
         inceptionYear.set("2024")
         url.set("https://github.com/y9Kap/Lesta-BLITZ-API")
+
         licenses {
             license {
                 name.set("The MIT License")
@@ -47,6 +58,11 @@ mavenPublishing {
             developerConnection.set("scm:git:ssh://git@github.com/y9Kap/Lesta-BLITZ-API.git")
         }
     }
+}
+
+signing {
+    useGpgCmd()
+    sign(publishing.publications)
 }
 
 kotlin {
