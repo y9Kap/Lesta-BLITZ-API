@@ -18,11 +18,12 @@ internal fun getException(
             BlitzServerInvalidIpAddressException.MESSAGE -> BlitzServerInvalidIpAddressException()
             BlitzInvalidApplicationIdException.MESSAGE -> BlitzInvalidApplicationIdException()
             BlitzApplicationBlockedException.MESSAGE -> BlitzApplicationBlockedException()
+            BlitzNotEnoughSearchLengthException.MESSAGE -> BlitzNotEnoughSearchLengthException()
 
-            error.field + BlitzFieldListLimitExceededException.MESSAGE ->
+            error.field.uppercase() + BlitzFieldListLimitExceededException.MESSAGE ->
                 BlitzFieldListLimitExceededException(error.field)
 
-            BlitzInvalidFieldException.MESSAGE + error.field ->
+            BlitzInvalidFieldException.MESSAGE + error.field.uppercase() ->
                 BlitzInvalidFieldException(error.field)
 
             else -> BlitzInternalException(error.message)

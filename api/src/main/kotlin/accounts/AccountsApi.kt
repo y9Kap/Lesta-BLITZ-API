@@ -4,17 +4,16 @@ import BlitzApi
 import accounts.stat.Player
 import auth.ApplicationId
 import engine.requests.ListPlayersRequest
-import url.Url
 
 public class AccountsApi(private val api: BlitzApi) {
 
     public suspend fun listPlayers(
         applicationId: ApplicationId,
         prompt: List<String>,
-        fields: List<String>?,
-        language: LocalLanguage?,
-        limit: Int?,
-        searchType: SearchType?
+        fields: List<String>? = null,
+        language: LocalLanguage? = null,
+        limit: Int? = null,
+        searchType: SearchType? = null
     ): List<Player> {
         return api.engine.execute(
             ListPlayersRequest(

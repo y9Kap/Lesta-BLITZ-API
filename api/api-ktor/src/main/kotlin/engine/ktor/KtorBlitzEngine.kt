@@ -43,7 +43,7 @@ public class KtorBlitzEngine(
 
     private val accounts = AccountsEngine(
         baseUrl = baseUrl,
-        httpClient = httpClient
+        httpClient = this.httpClient
     )
 
     @Suppress("UNCHECKED_CAST")

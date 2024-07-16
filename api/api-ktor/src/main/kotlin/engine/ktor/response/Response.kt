@@ -1,6 +1,7 @@
 package engine.ktor.response
 
 import io.ktor.client.call.*
+import io.ktor.client.plugins.*
 import io.ktor.client.statement.*
 import kotlinx.serialization.KSerializer
 import kotlinx.serialization.Serializable
@@ -17,6 +18,11 @@ internal sealed interface ServerResponse<out T> {
         val code: Int,
         val value: String
     ) : ServerResponse<Nothing>
+
+    @Serializable
+    private data class Meta(
+        val count: Int
+    )
 
     data class Success<T>(val data: T) : ServerResponse<T>
 
@@ -56,6 +62,7 @@ internal sealed interface ServerResponse<out T> {
         @Serializable
         private data class Data<T>(
             val status: String,
+            val meta: Meta? = null,
             val data: T? = null,
             val error: Error? = null
         )
@@ -64,5 +71,8 @@ internal sealed interface ServerResponse<out T> {
 }
 
 internal suspend inline fun <reified T : Any> HttpResponse.bodyAsSuccess(): T {
-    return (body<ServerResponse<T>>() as ServerResponse.Success).data
+    when (val body = body<ServerResponse<T>>()) {
+        is ServerResponse.Success -> return body.data
+        is ServerResponse.Error -> throw ResponseException(this, this.bodyAsText())
+    }
 }

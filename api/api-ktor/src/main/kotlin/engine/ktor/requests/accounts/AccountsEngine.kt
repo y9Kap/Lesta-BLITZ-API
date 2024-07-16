@@ -19,7 +19,7 @@ internal class AccountsEngine(
     private val baseUrl =  baseUrl / "account"
 
     suspend fun listPlayers(request: ListPlayersRequest): ListPlayersRequest.Response {
-        val url = baseUrl / "list"
+        val url = baseUrl / "list/"
         val response = httpClient.get(url.string) {
             parameter("application_id", request.applicationId.string)
             parameter("search", request.prompt.joinToString(","))

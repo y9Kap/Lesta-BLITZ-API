@@ -28,7 +28,7 @@ public fun BlitzApi.Companion.lestaBlitzServer(
     val configuredClient = if (enableLogging) {
         httpClient.config {
             Logging {
-                logger = Logger.SIMPLE
+                logger = Logger.DEFAULT
                 level = LogLevel.ALL
             }
         }

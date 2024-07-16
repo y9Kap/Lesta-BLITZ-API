@@ -4,7 +4,7 @@ import kotlinx.serialization.Serializable
 
 @Serializable
 @JvmInline
-public value class AccountIdSerializable(public val int: Int)
+public value class AccountIdSerializable(public val long: Long)
 
-public fun AccountIdSerializable.type(): AccountId = AccountId(int)
-public fun AccountId.serializable(): AccountIdSerializable = AccountIdSerializable(int)
+public fun AccountIdSerializable.type(): AccountId = AccountId(long)
+public fun AccountId.serializable(): AccountIdSerializable = AccountIdSerializable(long)
