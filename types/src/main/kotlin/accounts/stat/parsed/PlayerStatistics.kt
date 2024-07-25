@@ -1,9 +1,9 @@
-package accounts.stat
+package accounts.stat.parsed
 
 import accounts.date.DateTime
 import auth.AccountId
 
-public data class PlayerStat(
+public data class PlayerStatistics(
     val statistics: Statistics,
     val accountId: AccountId,
     val createdAt: DateTime,

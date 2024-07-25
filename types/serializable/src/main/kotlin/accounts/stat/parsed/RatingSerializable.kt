@@ -1,6 +1,7 @@
-package accounts.stat
+package accounts.stat.parsed
 
 import accounts.date.DateTimeSerializable
+import accounts.date.type
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -38,4 +39,26 @@ public data class RatingSerializable(
     val survivedBattles: Int,
     @SerialName("dropped_capture_points")
     val defensePoints: Int
+)
+
+public fun RatingSerializable.type(): Rating = Rating(
+    spotted = spotted,
+    battlesLeftBeforeCalibration = battlesLeftBeforeCalibration,
+    hits = hits,
+    frags = frags,
+    recalibrationStartTime = recalibrationStartTime.type(),
+    balancerRating = balancerRating, wins = wins,
+    losses = losses,
+    isRecalibration = isRecalibration,
+    capturePoints = capturePoints,
+    battleCount = battleCount,
+    currentSeason = currentSeason,
+    damageDealt = damageDealt,
+    damageReceived = damageReceived,
+    shots = shots,
+    frags8p = frags8p,
+    xp = xp,
+    winAndSurvived = winAndSurvived,
+    survivedBattles = survivedBattles,
+    defensePoints = defensePoints
 )

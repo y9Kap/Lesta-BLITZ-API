@@ -9,36 +9,14 @@ import kotlin.jvm.JvmInline
 @UnstableApi
 @JvmInline
 public value class Url @UnsafeConstructor constructor(public val string: String) {
-
-    public val protocol: UrlProtocol get() {
-        val (protocol) = REGEX.matchEntire(string)
-            ?.destructured
-            ?: error("Cannot extract protocol")
-
-        return UrlProtocol(protocol)
-    }
-
-    public fun replaceProtocol(newProtocol: UrlProtocol): Url {
-        return Url(string = string.replaceFirst(protocol.string, newProtocol.string))
-    }
-
-    public fun replaceProtocolWithWebsocket(): Url {
-        return replaceProtocol(protocol.toWebSocket())
-    }
-
-    public fun replaceProtocol(newProtocol: String): Url {
-        return replaceProtocol(UrlProtocol(newProtocol))
-    }
-
     public operator fun div(url: Url): Url {
-        return if (string.endsWith(suffix = "/")) {
-            Url(string = string + url.string)
-        } else {
-            Url(string = "$string/${url.string}")
-        }
+        val base = string.trimEnd('/')
+        val additional = url.string.trimStart('/')
+        val combined = "$base/$additional/"
+        return Url(combined)
     }
 
-    public operator fun div(string: String): Url = div(Url(string))
+    public operator fun div(string: String): Url = this / Url(string)
 
     public operator fun plus(parameters: Parameters): Url {
         val string = buildString {

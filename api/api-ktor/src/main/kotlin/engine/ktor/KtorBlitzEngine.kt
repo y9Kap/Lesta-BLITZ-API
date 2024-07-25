@@ -7,8 +7,10 @@ import engine.BlitzRequestsEngine
 import engine.ktor.exception.getException
 import engine.ktor.requests.accounts.AccountsEngine
 import engine.ktor.response.ServerResponse
+import engine.requests.AchievementsPlayersRequest
 import engine.requests.BlitzRequest
 import engine.requests.ListPlayersRequest
+import engine.requests.StatisticsPlayersRequest
 import exception.BlitzException
 import exception.BlitzInternalException
 import io.ktor.client.*
@@ -49,7 +51,9 @@ public class KtorBlitzEngine(
     @Suppress("UNCHECKED_CAST")
     override suspend fun <T> execute(request: BlitzRequest<T>): T = handleBlitzExceptions {
         return when (request) {
-            is ListPlayersRequest -> accounts.listPlayers(request) as T
+            is ListPlayersRequest -> accounts.getListPlayers(request) as T
+            is StatisticsPlayersRequest -> accounts.getStatisticsPlayers(request) as T
+            is AchievementsPlayersRequest -> accounts.getAchievementsPlayers(request) as T
         }
     }
 

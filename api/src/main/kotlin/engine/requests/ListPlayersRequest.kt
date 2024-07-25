@@ -2,7 +2,7 @@ package engine.requests
 
 import accounts.LocalLanguage
 import accounts.SearchType
-import accounts.stat.Player
+import accounts.stat.parsed.Player
 import auth.ApplicationId
 
 public data class ListPlayersRequest(

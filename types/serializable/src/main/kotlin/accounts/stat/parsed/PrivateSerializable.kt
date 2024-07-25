@@ -1,6 +1,7 @@
-package accounts.stat
+package accounts.stat.parsed
 
 import accounts.date.DateTimeSerializable
+import accounts.date.type
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
@@ -13,7 +14,7 @@ public data class PrivateSerializable(
     @SerialName("free_xp")
     val freeXp: Int,
     @SerialName("ban_time")
-    val banTime: DateTimeSerializable?,
+    val banTime: DateTimeSerializable? = null,
     @SerialName("is_premium")
     val isPremium: Boolean,
     val credits: Long,
@@ -23,4 +24,17 @@ public data class PrivateSerializable(
     val battleLifeTimeInSeconds: Long,
     @SerialName("ban_info")
     val banInfo: String
+)
+
+public fun PrivateSerializable.type(): Private = Private(
+    restrictions = restrictions.type(),
+    groupedContacts = groupedContacts.type(),
+    gold = gold,
+    freeXp = freeXp,
+    banTime = banTime?.type(),
+    isPremium = isPremium,
+    credits = credits,
+    premiumExpiresAt = premiumExpiresAt.type(),
+    battleLifeTimeInSeconds = battleLifeTimeInSeconds,
+    banInfo = banInfo
 )

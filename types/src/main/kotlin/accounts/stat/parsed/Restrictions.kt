@@ -1,4 +1,4 @@
-package accounts.stat
+package accounts.stat.parsed
 
 import accounts.date.DateTime
 

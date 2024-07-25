@@ -1,4 +1,4 @@
-package accounts.stat
+package accounts.stat.parsed
 
 public data class Statistics(
     val clan: Analytics,

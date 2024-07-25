@@ -1,10 +1,10 @@
-package accounts.stat
+package accounts.stat.parsed
 
 import kotlinx.serialization.SerialName
 import kotlinx.serialization.Serializable
 
 @Serializable
-public data class Analytics(
+public data class AnalyticsSerializable(
     val spotted: Long,
     @SerialName("max_frags_tank_id")
     val maxFragsTankId: Int,
@@ -35,4 +35,26 @@ public data class Analytics(
     val survivedBattles: Int,
     @SerialName("dropped_capture_points")
     val defensePoints: Int
+)
+
+public fun AnalyticsSerializable.type(): Analytics = Analytics(
+    spotted = spotted,
+    maxFragsTankId = maxFragsTankId,
+    hits = hits,
+    frags = frags,
+    maxXp = maxXp,
+    maxXpTankId = maxXpTankId,
+    wins = wins,
+    losses = losses,
+    capturePoints = capturePoints,
+    battleCount = battleCount,
+    damageDealt = damageDealt,
+    damageReceived = damageReceived,
+    maxFrags = maxFrags,
+    shots = shots,
+    frags8p = frags8p,
+    xp = xp,
+    winAndSurvived = winAndSurvived,
+    survivedBattles = survivedBattles,
+    defensePoints = defensePoints
 )
