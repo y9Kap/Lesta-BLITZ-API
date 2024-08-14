@@ -1,0 +1,1 @@
+Unfortunately, Lesta and Wargaming are unable to create and support the work of the Tanks Blitz and WOT Blitz APIs. I hope this is a temporary problem, but for now I am forced to archive the repository and stop working on it until the above-mentioned companies find the desire and developers for stable work of the API.
