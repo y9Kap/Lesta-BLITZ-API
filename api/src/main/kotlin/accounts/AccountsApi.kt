@@ -51,6 +51,4 @@ public class AccountsApi(private val api: BlitzApi) {
         ).playerStatistics
     }
 
-
-
 }

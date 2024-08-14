@@ -1,17 +1,17 @@
 package accounts
 
-public sealed class LocalLanguage(val type: String) {
-    data object English : SearchType("en")
-    data object Russian : SearchType("ru")
-    data object Polish : SearchType("pl")
-    data object German : SearchType("de")
-    data object French : SearchType("fr")
-    data object Spanish : SearchType("es")
-    data object SimplifiedChinese : SearchType("zh-cn")
-    data object TraditionalChinese : SearchType("zh-tw")
-    data object Turkish : SearchType("tr")
-    data object Czech : SearchType("cs")
-    data object Thai : SearchType("th")
-    data object Vietnamese : SearchType("vi")
-    data object Korean : SearchType("ko")
+public sealed class LocalLanguage(public val type: String) {
+    public data object English : LocalLanguage("en")
+    public data object Russian : LocalLanguage("ru")
+    public data object Polish : LocalLanguage("pl")
+    public data object German : LocalLanguage("de")
+    public data object French : LocalLanguage("fr")
+    public data object Spanish : LocalLanguage("es")
+    public data object SimplifiedChinese : LocalLanguage("zh-cn")
+    public data object TraditionalChinese : LocalLanguage("zh-tw")
+    public data object Turkish : LocalLanguage("tr")
+    public data object Czech : LocalLanguage("cs")
+    public data object Thai : LocalLanguage("th")
+    public data object Vietnamese : LocalLanguage("vi")
+    public data object Korean : LocalLanguage("ko")
 }

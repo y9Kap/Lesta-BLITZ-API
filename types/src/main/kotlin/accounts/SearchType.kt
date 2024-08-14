@@ -1,6 +1,6 @@
 package accounts
 
-public sealed class SearchType(val type: String) {
-    data object StartsWith : SearchType("startswith")
-    data object Exact : SearchType("exact")
+public sealed class SearchType(public val type: String) {
+    public data object StartsWith : SearchType("startswith")
+    public data object Exact : SearchType("exact")
 }
